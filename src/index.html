@@ -6,9 +6,13 @@
   <link href="/dist/output.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="icon" href="./assets/img/logo.jpg">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
   <title>Bia-Hair</title>
+  <script>
+    var totalItemCount = 1;
+    var subTotalPrice = 0.0;
+  </script>
 </head>
 <body class=" overflow-y-scroll ">
        <header class="">
@@ -26,8 +30,8 @@
             </label>
             <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
               <div class="card-body">
-                <span class="font-bold text-lg">8 Items</span>
-                <span class="text-info">Subtotal: R$100.00</span>
+                <span class="font-bold text-lg"><span id="itemCount">0</span> Items</span>
+                <span class="text-info">Subtotal: R$<span id="subTotalPrice">0.00</span></span>
                 <div class="card-actions">
                   <button class="btn btn-primary btn-block">Ver carrinho</button>
                 </div>
@@ -201,7 +205,7 @@
                <figure> <img src="./assets/img/rabo.jpg" class="h-60 w-full" alt="Foto de um lacinho com trança"></figure>
                 <h2 class="text-2xl p-4 ">Rabo de cavalo</h2>
                 <p class="p-4">r$:30,00</p>
-                <label for="" class="btn bg-blue-600">comprar</label>
+                <label for="" class="btn bg-blue-600" onclick="buyItem(0)">comprar</label>
 
             </div>
 
@@ -209,7 +213,7 @@
                 <figure> <img src="./assets/img/pomada.jpg" alt="Foto de um lacinho com trança"></figure>
                  <h2 class="text-2xl p-4 ">Pomada modeladora</h2>
                  <p class="">r$:20,00</p>
-                 <label for="" class="btn bg-blue-600">comprar</label>
+                 <label for="" class="btn bg-blue-600" onclick="buyItem(1)">comprar</label>
  
              </div>
 
@@ -217,7 +221,7 @@
                 <figure> <img src="./assets/img/jumbo.jpg" alt="Foto de um lacinho com trança"></figure>
                  <h2 class="text-2xl p-4 ">Jumbo </h2>
                  <p class="p-4">r$:50,00</p>
-                 <label for="" class="btn bg-blue-600">comprar</label>
+                 <label for="" class="btn bg-blue-600" onclick="buyItem(2);">comprar</label>
  
              </div>
 
@@ -241,5 +245,31 @@
     
     </div>
 </footer>
+
+<script>
+  function buyItem(id){
+    var itemPrice = 0;
+
+    switch(id){
+      case 0: //Rabo de cavalo
+        itemPrice = 30;
+        break;
+      case 1: //Pomada
+        itemPrice = 20;
+        break;
+      case 2: //Jumbo
+        itemPrice = 50;
+        break;
+    }
+    
+    totalItemCount++; //Quantidade de itens em carrinho
+    subTotalPrice += itemPrice;
+    console.log("Itens em carrinho: " + totalItemCount + ", Total Preço: " + subTotalPrice)
+
+    document.getElementById("itemCount").innerText = totalItemCount.toString();
+    document.getElementById("subTotalPrice").innerText = subTotalPrice.toString();
+  }
+</script>
+
 </body>
 </html>
